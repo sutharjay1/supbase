@@ -18,7 +18,6 @@ const DashboardPage = ({ searchParams }: DashboardPageProps) => {
 
   return (
     <div className="h-[calc(100vh-80px)] flex-1 p-6">
-      {JSON.stringify(searchParams)}
       {!organization ? (
         <EmptyOrg />
       ) : (

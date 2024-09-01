@@ -6,6 +6,7 @@ import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
+import ModalProvider from "@/components/provider/modal-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +30,10 @@ export default function RootLayout({
       >
         <Toaster />
         <ConvexClientProvider>
-          <TooltipProvider>{children}</TooltipProvider>
+          <TooltipProvider>
+            <ModalProvider />
+            {children}
+          </TooltipProvider>
         </ConvexClientProvider>
       </body>
     </html>
