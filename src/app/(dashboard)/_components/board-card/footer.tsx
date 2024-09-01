@@ -33,7 +33,7 @@ const Footer = ({
     <div className="relative bg-zinc-50 p-3">
       <p className="max-w-sm truncate text-sm">{title}</p>
       <motion.p
-        className="hidden truncate text-sm text-muted-foreground group-hover:flex"
+        className="hidden truncate text-sm text-muted-foreground group-hover:flex duration-75"
         variants={{
           rest: { opacity: 0, y: 10 },
           hover: { opacity: 1, y: 0 },

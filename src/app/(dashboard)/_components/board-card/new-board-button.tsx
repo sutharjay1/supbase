@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { useApiMutation } from "../../../../../hooks/use-api-mutation";
 import { toast } from "sonner";
 import { api } from "../../../../../convex/_generated/api";
+import { useRouter } from "next/navigation";
 
 interface NewBoardButtonProps {
   orgId: string;
@@ -15,6 +16,7 @@ interface NewBoardButtonProps {
 }
 
 const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
+  const router = useRouter();
   const { organization } = useOrganization();
   const { mutate: create, pending } = useApiMutation(api.board.create);
 
@@ -30,7 +32,8 @@ const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
     })
       .then((id) => {
         toast.success("Board created");
-        // TODO: Navigate to new board
+        // router.push(`/board/${id}`);
+        // console.log(id);
       })
       .catch((error) => {
         toast.error("Failed to create board");
