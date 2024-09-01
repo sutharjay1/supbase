@@ -14,6 +14,7 @@ import { api } from "../../convex/_generated/api";
 import ConfirmModal from "./confirm-modal";
 import { Button } from "./ui/button";
 import { useRenameModal } from "../../store/use-rename-modal";
+import { useRouter } from "next/navigation";
 
 interface ActionsProps {
   children: React.ReactNode;
@@ -22,7 +23,8 @@ interface ActionsProps {
   sideOffset?: DropdownMenuContentProps["sideOffset"];
   alignOffset?: DropdownMenuContentProps["alignOffset"];
   id: string;
-  label: string;
+  label?: string;
+  title: string;
 }
 
 const Actions = ({
@@ -33,10 +35,13 @@ const Actions = ({
   alignOffset = 0,
   id,
   label,
+  title,
 }: ActionsProps) => {
   const { mutate: removeBoard, pending } = useApiMutation(api.board.remove);
 
   const { isOpen, onOpen, onClose, initialValues } = useRenameModal();
+
+  const router = useRouter();
 
   const onCopyLink = () => {
     navigator.clipboard
@@ -53,12 +58,12 @@ const Actions = ({
     removeBoard({ id })
       .then(() => {
         toast.success("Board deleted");
+        router.push("/");
       })
       .catch(() => {
         toast.error("Failed to delete board");
       });
   };
-  const title = label;
 
   const onRename = () => {
     console.log("rename");
@@ -80,7 +85,7 @@ const Actions = ({
           <Link2 className="mr-2 h-4 w-4" />
           Copy board link
         </DropdownMenuItem>{" "}
-        <DropdownMenuItem onClick={() => onOpen(id, initialValues.title)}>
+        <DropdownMenuItem onClick={() => onOpen(id, title!)}>
           <Pencil className="mr-2 h-4 w-4" />
           Rename
         </DropdownMenuItem>

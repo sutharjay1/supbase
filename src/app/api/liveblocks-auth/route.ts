@@ -16,20 +16,17 @@ export async function POST(request: Request) {
     const authorization = await auth();
     const user = await currentUser();
 
-    console.log("Authorization", authorization);
-    console.log("User", user);
+
 
     if (!authorization || !user) {
-        console.log("Unauthorized");
+
         return new Response("Unauthorized", { status: 403 });
     }
 
     const { room } = await request.json()
-    console.log("Room", room);
 
     const board = await convex.query(api.board.get, { id: room })
 
-    console.log("Board", board);
 
     if (board?.orgId !== authorization.orgId) {
         console.log("Unauthorized");
@@ -41,7 +38,7 @@ export async function POST(request: Request) {
         user.id,
         {
             userInfo: {
-                name: user.firstName,
+                name: user.firstName!,
                 picture: user.imageUrl
             }
         }
@@ -53,7 +50,6 @@ export async function POST(request: Request) {
 
     const { status, body } = await session.authorize();
 
-    console.log("Session authorization response", status, body);
 
     return new Response(body, { status });
 }

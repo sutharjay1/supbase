@@ -87,7 +87,7 @@ const BoardCard = ({
             <Image src={imageUrl} alt={title} fill className="object-cover" />
           </motion.div>
           <Overlay />
-          <Actions id={id} label="Options" side="right">
+          <Actions id={id} label="Options" side="right" title={title}>
             <button className="absolute right-1 top-1 px-3 py-2 opacity-0 outline-none transition-opacity group-hover:opacity-100">
               <MoreHorizontal
                 className="text-zinc-50 opacity-75 transition-opacity hover:opacity-100"

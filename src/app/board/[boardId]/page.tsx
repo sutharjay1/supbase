@@ -7,7 +7,7 @@ interface BoardProps {
     boardId: string;
   };
 }
-
+  
 const BoardIdPage = ({ params }: BoardProps) => {
   return (
     <div className="h-screen">
