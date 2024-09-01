@@ -50,7 +50,7 @@ const OrgSideBar = () => {
 
   const favorites = searchParams.get("favorites");
 
-  console.log(favorites);
+  // console.log(favorites);
 
   return (
     <>
