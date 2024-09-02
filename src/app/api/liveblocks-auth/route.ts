@@ -12,7 +12,6 @@ const liveblocks = new Liveblocks({
 });
 
 export async function POST(request: Request) {
-    console.log("Liveblocks auth request", request);
     const authorization = await auth();
     const user = await currentUser();
 
@@ -29,7 +28,6 @@ export async function POST(request: Request) {
 
 
     if (board?.orgId !== authorization.orgId) {
-        console.log("Unauthorized");
         return new Response("Unauthorized", { status: 403 });
     }
 

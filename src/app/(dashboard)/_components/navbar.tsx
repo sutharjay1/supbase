@@ -12,8 +12,6 @@ import InviteButton from "./invite-button";
 const NavBar = () => {
   const { organization } = useOrganization();
 
-  // console.log(organization);
-
   return (
     <div className="flex items-center gap-x-6 px-3 py-5 lg:p-5">
       <div className="hidden lg:flex lg:flex-1">

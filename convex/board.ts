@@ -25,7 +25,6 @@ export const create = mutation({
         });
 
 
-        console.log(boards)
 
         const newBoard = await ctx.db.get(boards);
 
