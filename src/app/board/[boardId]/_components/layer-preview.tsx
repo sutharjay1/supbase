@@ -3,6 +3,7 @@
 import { useStorage } from "@liveblocks/react/suspense";
 import React, { memo } from "react";
 import { LayerType } from "../../../../../types/canvas";
+import Rectangle from "./rectangle";
 
 interface LayerPreviewProps {
   key: string;
@@ -20,9 +21,7 @@ const LayerPreview = memo(
     switch (layer.type) {
       case LayerType.Rectangle:
         return (
-          <>
-            <div>Rectangle</div>
-          </>
+          <Rectangle id={id} layer={layer} onPointerDown={onLayerPointerDown} />
         );
       case LayerType.Ellipse:
         return (
