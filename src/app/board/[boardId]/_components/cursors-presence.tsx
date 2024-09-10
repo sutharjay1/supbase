@@ -19,7 +19,9 @@ const Cursors = () => {
 const CursorsPresence = memo(() => {
   return (
     <>
-      // TODO: Draft Pencil
+      {/*
+        TODO: Draft Pencil
+        */}
       <Cursors />
     </>
   );

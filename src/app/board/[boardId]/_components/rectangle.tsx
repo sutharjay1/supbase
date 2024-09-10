@@ -1,13 +1,19 @@
+import { colorToCSS } from "@/lib/utils";
 import { RectangleLayer } from "../../../../../types/canvas";
 
 interface RectangleProps {
   id: string;
   layer: RectangleLayer;
   onPointerDown: (e: React.PointerEvent, id: string) => void;
-  selectionColor?: string;
+  selectionColor: string;
 }
 
-const Rectangle = ({ id, layer, onPointerDown }: RectangleProps) => {
+const Rectangle = ({
+  id,
+  layer,
+  onPointerDown,
+  selectionColor,
+}: RectangleProps) => {
   const { x, y, height, width, fill } = layer;
 
   return (
@@ -19,10 +25,10 @@ const Rectangle = ({ id, layer, onPointerDown }: RectangleProps) => {
       }}
       width={width}
       height={height}
-      fill={"#000"}
+      fill={fill ? colorToCSS(fill) : "#ccc"}
       x={0}
       y={0}
-      stroke="transparent"
+      stroke={selectionColor || "transparent"}
     />
   );
 };

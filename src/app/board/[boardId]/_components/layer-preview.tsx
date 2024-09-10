@@ -9,11 +9,11 @@ interface LayerPreviewProps {
   key: string;
   id: string;
   onLayerPointerDown: (e: React.PointerEvent, layerId: string) => void; //TODO: fix types
-  selectionColor?: string;
+  selectionColor: string;
 }
 
 const LayerPreview = memo(
-  ({ key, id, onLayerPointerDown }: LayerPreviewProps) => {
+  ({ key, id, onLayerPointerDown, selectionColor }: LayerPreviewProps) => {
     const layer = useStorage((root) => root.layers.get(id));
 
     if (!layer) return null;
@@ -21,7 +21,12 @@ const LayerPreview = memo(
     switch (layer.type) {
       case LayerType.Rectangle:
         return (
-          <Rectangle id={id} layer={layer} onPointerDown={onLayerPointerDown} />
+          <Rectangle
+            id={id}
+            layer={layer}
+            onPointerDown={onLayerPointerDown}
+            selectionColor={selectionColor}
+          />
         );
       case LayerType.Ellipse:
         return (
@@ -53,5 +58,7 @@ const LayerPreview = memo(
     }
   },
 );
+
+LayerPreview.displayName = "LayerPreview";
 
 export default LayerPreview;
