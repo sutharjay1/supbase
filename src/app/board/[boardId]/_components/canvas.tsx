@@ -164,6 +164,15 @@ const Canvas = ({ boardId }: CanvasProps) => {
 
     [canvasState],
   );
+  const startMultiSelection = useCallback((current: Point, origin: Point) => {
+    if (Math.abs(current.x - origin.x) + Math.abs(current.y - origin.y) > 5) {
+      setCanvasState({
+        mode: CanvasMode.SelectionNet,
+        origin: { x: 0, y: 0 },
+        current,
+      });
+    }
+  }, []);
 
   const onWheel = useCallback((e: React.WheelEvent) => {
     setCamera({ x: camera.x - e.deltaX, y: camera.y - e.deltaY });
@@ -176,8 +185,9 @@ const Canvas = ({ boardId }: CanvasProps) => {
       const current = pointerEventToCanvasPoint(e, camera);
 
       setMyPresence({ cursor: current });
-
-      if (canvasState.mode === CanvasMode.Translating) {
+      if (canvasState.mode === CanvasMode.Pressing) {
+        startMultiSelection(current, canvasState.origin);
+      } else if (canvasState.mode === CanvasMode.Translating) {
         translateSelectedLayer(current);
       } else if (canvasState.mode === CanvasMode.Resizing) {
         resizeSelectedLayer(current);
