@@ -109,7 +109,7 @@ const SelectionTools = memo(
             variant="board"
             size="icon"
             className="mx-0 px-0"
-            //   onClick={() => deleteLayers()}
+            // onClick={deleteLayers}
           >
             <Trash className="size-6" />
           </Button>
