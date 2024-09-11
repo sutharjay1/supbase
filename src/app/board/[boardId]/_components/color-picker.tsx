@@ -41,7 +41,6 @@ interface ColorButtonProps {
 }
 
 const ColorButton = ({ onClick, color, key }: ColorButtonProps) => {
-  console.log(`color: ${colorToCSS(color)}`);
   return (
     <button
       className="flex h-8 w-8 items-center justify-center opacity-100 transition hover:opacity-75"

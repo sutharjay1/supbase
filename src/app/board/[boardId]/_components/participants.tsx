@@ -15,7 +15,7 @@ const Participants = () => {
   const hasMoreUsers = users.length > MAX_SHOWN_USERS;
 
   return (
-    <div className="absolute right-2 top-2 mx-auto flex h-[3.291rem] w-[3.291rem] items-center justify-center rounded-md bg-white shadow-md">
+    <div className="absolute right-2 top-2 mx-auto flex h-[3.291rem] w-fit px-2 items-center justify-center rounded-md bg-white shadow-md">
       <div className="flex gap-x-2">
         {users.slice(0, MAX_SHOWN_USERS).map((user) => (
           <UserAvatar

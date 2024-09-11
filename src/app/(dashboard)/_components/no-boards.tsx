@@ -27,6 +27,7 @@ const NoBoards = () => {
     })
       .then((id) => {
         toast.success("Board created");
+
         router.push(`/board/${id}`);
       })
       .catch((error) => {

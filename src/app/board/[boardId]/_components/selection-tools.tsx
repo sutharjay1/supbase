@@ -80,7 +80,7 @@ const SelectionTools = memo(
     const x = selectionBounds.x + selectionBounds.width / 2 + camera.x;
     const y = selectionBounds.y + camera.y;
 
-    // const deleteLayers = useDeleteLayers(selectionBounds);
+    // const deleteLayers = useDeleteLayers();
 
     return (
       <div

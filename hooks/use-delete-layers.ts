@@ -1,10 +1,8 @@
 import { useMutation, useSelf } from "@liveblocks/react";
 import { XYWH } from "../types/canvas";
 
-export const useDeleteLayers = (selectionBounds: XYWH) => {
-    console.log("useDeleteLayers");
+export const useDeleteLayers = () => {
     const selection = useSelf((me) => me.presence.selection);
-    console.log("selection", selection);
 
     return useMutation(
         ({ storage, setMyPresence }) => {

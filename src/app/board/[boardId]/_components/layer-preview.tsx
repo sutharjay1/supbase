@@ -4,6 +4,11 @@ import { useStorage } from "@liveblocks/react/suspense";
 import React, { memo } from "react";
 import { LayerType } from "../../../../../types/canvas";
 import Rectangle from "./rectangle";
+import Ellipse from "./ellipse";
+import Text from "./text";
+import Note from "./note";
+import Path from "./path";
+import { colorToCSS } from "@/lib/utils";
 
 interface LayerPreviewProps {
   key: string;
@@ -30,27 +35,43 @@ const LayerPreview = memo(
         );
       case LayerType.Ellipse:
         return (
-          <>
-            <div>Ellipse</div>
-          </>
+          <Ellipse
+            id={id}
+            layer={layer}
+            onPointerDown={onLayerPointerDown}
+            selectionColor={selectionColor}
+          />
         );
       case LayerType.Path:
         return (
-          <>
-            <div>Path</div>
-          </>
+          <Path
+            key={id}
+            points={layer.points}
+            onPointerDown={(e) => onLayerPointerDown(e, id)}
+            selectionColor={selectionColor}
+            stroke={selectionColor}
+            x={layer.x}
+            y={layer.y}
+            fill={layer.fill ? colorToCSS(layer.fill) : "#000"}
+          />
         );
       case LayerType.Text:
         return (
-          <>
-            <div>Text</div>
-          </>
+          <Text
+            id={id}
+            layer={layer}
+            onPointerDown={onLayerPointerDown}
+            selectionColor={selectionColor}
+          />
         );
       case LayerType.Note:
         return (
-          <>
-            <div>Note</div>
-          </>
+          <Note
+            id={id}
+            layer={layer}
+            onPointerDown={onLayerPointerDown}
+            selectionColor={selectionColor}
+          />
         );
       default:
         console.warn("unknown layer type");
