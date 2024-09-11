@@ -7,6 +7,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
 import ModalProvider from "@/components/provider/modal-provider";
+import { Suspense } from "react";
+import Loading from "@/components/auth/loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,12 +31,14 @@ export default function RootLayout({
         )}
       >
         <Toaster />
-        <ConvexClientProvider>
-          <TooltipProvider>
-            <ModalProvider />
-            {children}
-          </TooltipProvider>
-        </ConvexClientProvider>
+        <Suspense fallback={<Loading />}>
+          <ConvexClientProvider>
+            <TooltipProvider>
+              <ModalProvider />
+              {children}
+            </TooltipProvider>
+          </ConvexClientProvider>
+        </Suspense>
       </body>
     </html>
   );
