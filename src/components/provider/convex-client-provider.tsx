@@ -12,7 +12,7 @@ interface ConvexClientProviderProps {
 // const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL!;
 
 const convexUrl = "https://necessary-curlew-448.convex.cloud";
-const convex = new ConvexReactClient(convexUrl);
+const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
 export default function ConvexClientProvider({
   children,
